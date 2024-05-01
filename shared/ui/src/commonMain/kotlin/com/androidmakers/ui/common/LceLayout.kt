@@ -3,24 +3,30 @@ package com.androidmakers.ui.common
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
+import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults
+import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.androidmakers.ui.model.Lce
 import dev.icerock.moko.resources.compose.stringResource
-import dev.materii.pullrefresh.PullRefreshIndicator
-import dev.materii.pullrefresh.PullRefreshState
-import dev.materii.pullrefresh.pullRefresh
-import dev.materii.pullrefresh.rememberPullRefreshState
 import fr.paug.androidmakers.ui.MR
 
 @Composable
@@ -117,17 +123,25 @@ fun <T> ButtonRefreshableLceLayout(
   }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> SwipeRefreshableLceLayout(
     viewModel: LceViewModel<T>,
     content: @Composable (T) -> Unit
 ) {
-  val isRefreshing = viewModel.isRefreshing.collectAsState()
+  val isRefreshingState = viewModel.isRefreshing.collectAsState()
   val lce = viewModel.values.collectAsState()
-  val pullRefreshState = rememberPullRefreshState(isRefreshing.value, { viewModel.refresh() })
 
-  PullRefreshLayout(
-      state = pullRefreshState
+  val pullToRefreshState = rememberPullToRefreshState(
+      isRefreshing = isRefreshingState.value,
+      onRefresh = { viewModel.refresh() }
+  )
+
+  PullToRefreshLayout(
+      state = pullToRefreshState,
+      modifier = Modifier
+          .fillMaxSize()
+          .nestedScroll(pullToRefreshState.nestedScrollConnection)
   ) {
     LceLayout(
         lce = lce.value,
@@ -138,42 +152,65 @@ fun <T> SwipeRefreshableLceLayout(
 }
 
 
-// TODO this is a temporary function
-// To be removed when Materii-PullToRefresh will be available in 1.4.0
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PullRefreshLayout(
-    state: PullRefreshState,
+fun rememberPullToRefreshState(
+    isRefreshing: Boolean,
+    onRefresh: () -> Unit,
+    positionalThreshold: Dp = PullToRefreshDefaults.PositionalThreshold,
+    enabled: () -> Boolean = { true }
+): PullToRefreshState {
+  val density = LocalDensity.current
+  val positionalThresholdPx = with(density) { positionalThreshold.toPx() }
+  val delegate = remember(positionalThresholdPx, enabled) {
+    PullToRefreshState(
+      positionalThresholdPx = positionalThresholdPx,
+      initialRefreshing = isRefreshing,
+      enabled = enabled
+    )
+  }
+
+  // Sync state
+  if (isRefreshing != delegate.isRefreshing) {
+    if (isRefreshing) {
+      delegate.startRefresh()
+    } else {
+      delegate.endRefresh()
+    }
+  }
+
+  return remember(delegate, onRefresh) {
+    object : PullToRefreshState by delegate {
+      override fun startRefresh() {
+        delegate.startRefresh()
+        onRefresh()
+      }
+    }
+  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PullToRefreshLayout(
+    state: PullToRefreshState,
     modifier: Modifier = Modifier,
     flipped: Boolean = false,
-    enabled: Boolean = true,
-    indicator: @Composable () -> Unit = {
-      PullRefreshIndicator(
-          state = state,
-          flipped = flipped
-      )
+    indicator: @Composable (PullToRefreshState) -> Unit = { pullRefreshState ->
+      PullToRefreshDefaults.Indicator(state = pullRefreshState)
     },
     content: @Composable () -> Unit
 ) {
   Box(
-      modifier = Modifier
-          .pullRefresh(
-              state = state,
-              inverse = flipped,
-              enabled = enabled
-          )
-          .then(modifier)
+      modifier = modifier.clipToBounds()
   ) {
     val indicatorAlignment = if (flipped) Alignment.BottomCenter else Alignment.TopCenter
 
     content()
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .align(indicatorAlignment),
-        contentAlignment = Alignment.Center
-    ) {
-      indicator()
-    }
 
+    PullToRefreshContainer(
+        state = state,
+        modifier = Modifier.align(indicatorAlignment),
+        indicator = indicator
+    )
   }
 }
