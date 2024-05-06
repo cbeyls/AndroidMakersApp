@@ -1,5 +1,7 @@
 package com.androidmakers.ui.venue
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.locate_on_map
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -19,8 +21,7 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import com.androidmakers.ui.model.UIVenue
 import com.seiko.imageloader.rememberImagePainter
-import dev.icerock.moko.resources.compose.stringResource
-import fr.paug.androidmakers.ui.MR
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun VenueLayout(
@@ -70,7 +71,7 @@ fun VenueLayout(
             .fillMaxSize()
             .padding(horizontal = 8.dp),
         onClick = { uiVenue.coordinates?.let { onClickOnMap(it) } }) {
-      Text(text = stringResource(MR.strings.locate_on_map))
+      Text(text = stringResource(Res.string.locate_on_map))
     }
   }
 }

@@ -1,6 +1,5 @@
 plugins {
   alias(libs.plugins.androidmakers.kmp.library)
-  alias(libs.plugins.moko)
   alias(libs.plugins.jetbrainsCompose)
 }
 
@@ -19,9 +18,10 @@ kotlin {
   }
 
   sourceSets {
+    all {
+      languageSettings.optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
+    }
     commonMain.dependencies {
-      api(libs.moko.resources)
-      api(libs.moko.compose)
       implementation(compose.runtime)
       implementation(compose.foundation)
       implementation(compose.material3)
@@ -43,16 +43,12 @@ kotlin {
 }
 
 configurations.configureEach {
-  // Remove unnecessary dependency of Precompose and Moko
+  // Remove unnecessary dependency of Precompose
   exclude(group = "androidx.appcompat", module = "appcompat")
 }
 
 android {
   namespace = "fr.paug.androidmakers.ui"
-}
-
-multiplatformResources {
-  resourcesPackage.set("fr.paug.androidmakers.ui")
 }
 
 compose {

@@ -1,5 +1,9 @@
 package com.androidmakers.ui.venue
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.venue_afterparty_tab
+import androidmakersapp.shared.ui.generated.resources.venue_conference_tab
+import androidmakersapp.shared.ui.generated.resources.venue_floor_plan_tab
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,11 +24,10 @@ import com.androidmakers.ui.getPlatformContext
 import com.androidmakers.ui.model.Lce
 import com.androidmakers.ui.model.UIVenue
 import com.androidmakers.ui.model.toLce
-import dev.icerock.moko.resources.compose.stringResource
-import fr.paug.androidmakers.ui.MR
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.koin.koinViewModel
+import org.jetbrains.compose.resources.stringResource
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -35,9 +38,9 @@ fun VenuePager() {
   Column(modifier = Modifier.fillMaxWidth()) {
 
     val titles = listOf(
-      MR.strings.venue_conference_tab,
-      MR.strings.venue_afterparty_tab,
-      MR.strings.venue_floor_plan_tab
+      Res.string.venue_conference_tab,
+      Res.string.venue_afterparty_tab,
+      Res.string.venue_floor_plan_tab
     )
 
     val pagerState = rememberPagerState(pageCount = { titles.size })

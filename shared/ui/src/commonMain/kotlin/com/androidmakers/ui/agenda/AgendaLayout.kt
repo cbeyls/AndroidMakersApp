@@ -1,5 +1,12 @@
 package com.androidmakers.ui.agenda
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.bookmarked
+import androidmakersapp.shared.ui.generated.resources.english
+import androidmakersapp.shared.ui.generated.resources.filter
+import androidmakersapp.shared.ui.generated.resources.french
+import androidmakersapp.shared.ui.generated.resources.language
+import androidmakersapp.shared.ui.generated.resources.rooms
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,13 +38,12 @@ import androidx.compose.ui.unit.dp
 import com.androidmakers.ui.common.ButtonRefreshableLceLayout
 import com.androidmakers.ui.common.EmojiUtils
 import com.androidmakers.ui.common.SessionFilter
-import dev.icerock.moko.resources.compose.stringResource
 import fr.androidmakers.domain.model.Room
 import fr.androidmakers.domain.utils.eventTimeZone
-import fr.paug.androidmakers.ui.MR
 import kotlinx.datetime.Clock
 import kotlinx.datetime.todayIn
 import moe.tlaster.precompose.koin.koinViewModel
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -106,9 +112,9 @@ private fun AgendaFilterDrawer(
     onFiltersChanged: (List<SessionFilter>) -> Unit,
 ) {
   Column(modifier = Modifier.fillMaxWidth()) {
-    HeaderItem(stringResource(MR.strings.filter))
+    HeaderItem(stringResource(Res.string.filter))
     FilterItem(
-        text = stringResource(MR.strings.bookmarked),
+        text = stringResource(Res.string.bookmarked),
         imageVector = Icons.Rounded.Bookmark,
         checked = sessionFilters.any { it.type == SessionFilter.FilterType.BOOKMARK },
         onCheck = { checked ->
@@ -120,10 +126,10 @@ private fun AgendaFilterDrawer(
         }
     )
 
-    HeaderItem(stringResource(MR.strings.language))
+    HeaderItem(stringResource(Res.string.language))
     val french = "French"
     FilterItem(
-        text = stringResource(MR.strings.french),
+        text = stringResource(Res.string.french),
         language = french,
         checked = sessionFilters.any { it.type == SessionFilter.FilterType.LANGUAGE && it.value == french },
         onCheck = { checked ->
@@ -136,7 +142,7 @@ private fun AgendaFilterDrawer(
     )
     val english = "English"
     FilterItem(
-        text = stringResource(MR.strings.english),
+        text = stringResource(Res.string.english),
         language = english,
         checked = sessionFilters.any { it.type == SessionFilter.FilterType.LANGUAGE && it.value == english },
         onCheck = { checked ->
@@ -148,7 +154,7 @@ private fun AgendaFilterDrawer(
         }
     )
 
-    HeaderItem(stringResource(MR.strings.rooms))
+    HeaderItem(stringResource(Res.string.rooms))
     for (room in rooms) {
       FilterItem(
           text = room.name,

@@ -1,5 +1,8 @@
 package com.androidmakers.ui.speakers
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.back
+import androidmakersapp.shared.ui.generated.resources.speakers
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,9 +33,8 @@ import com.androidmakers.ui.common.SocialButtons
 import com.androidmakers.ui.getPlatformContext
 import com.androidmakers.ui.model.Lce
 import com.seiko.imageloader.rememberImagePainter
-import dev.icerock.moko.resources.compose.stringResource
 import fr.androidmakers.domain.model.SocialsItem
-import fr.paug.androidmakers.ui.MR
+import org.jetbrains.compose.resources.stringResource
 
 
 @Composable
@@ -74,7 +76,7 @@ fun SpeakerDetailsScreen(
               IconButton(onClick = onBackClick) {
                 Icon(
                     Icons.AutoMirrored.Rounded.ArrowBack,
-                    contentDescription = stringResource(MR.strings.back)
+                    contentDescription = stringResource(Res.string.back)
                 )
               }
             },
@@ -98,7 +100,7 @@ fun SpeakerDetailsScreen(
                 .size(64.dp)
                 .clip(CircleShape),
             painter = rememberImagePainter(photoUrl),
-            contentDescription = stringResource(MR.strings.speakers)
+            contentDescription = stringResource(Res.string.speakers)
         )
       }
 

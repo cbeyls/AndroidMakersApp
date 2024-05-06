@@ -1,105 +1,156 @@
 package com.androidmakers.ui.theme
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.montserrat_Black
+import androidmakersapp.shared.ui.generated.resources.montserrat_BlackItalic
+import androidmakersapp.shared.ui.generated.resources.montserrat_Bold
+import androidmakersapp.shared.ui.generated.resources.montserrat_BoldItalic
+import androidmakersapp.shared.ui.generated.resources.montserrat_ExtraBold
+import androidmakersapp.shared.ui.generated.resources.montserrat_ExtraBoldItalic
+import androidmakersapp.shared.ui.generated.resources.montserrat_ExtraLight
+import androidmakersapp.shared.ui.generated.resources.montserrat_ExtraLightItalic
+import androidmakersapp.shared.ui.generated.resources.montserrat_Italic
+import androidmakersapp.shared.ui.generated.resources.montserrat_Light
+import androidmakersapp.shared.ui.generated.resources.montserrat_LightItalic
+import androidmakersapp.shared.ui.generated.resources.montserrat_Medium
+import androidmakersapp.shared.ui.generated.resources.montserrat_MediumItalic
+import androidmakersapp.shared.ui.generated.resources.montserrat_Regular
+import androidmakersapp.shared.ui.generated.resources.montserrat_SemiBold
+import androidmakersapp.shared.ui.generated.resources.montserrat_SemiBoldItalic
+import androidmakersapp.shared.ui.generated.resources.montserrat_Thin
+import androidmakersapp.shared.ui.generated.resources.montserrat_ThinItalic
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import dev.icerock.moko.resources.compose.asFont
-import fr.paug.androidmakers.ui.MR
+import org.jetbrains.compose.resources.Font
 
 
 @Composable
-fun montserratExtraLight() = MR.fonts.montserrat_extralight.asFont(
-  FontWeight.ExtraLight
-)!!
+fun montserratExtraLight() = Font(
+  resource = Res.font.montserrat_ExtraLight,
+  weight = FontWeight.ExtraLight,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratExtraLightItalic() = MR.fonts.montserrat_extralightitalic.asFont(
-  FontWeight.ExtraLight, FontStyle.Italic
-)!!
+fun montserratExtraLightItalic() = Font(
+  resource = Res.font.montserrat_ExtraLightItalic,
+  weight = FontWeight.ExtraLight,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratLight() = MR.fonts.montserrat_light.asFont(
-  FontWeight.Light
-)!!
+fun montserratLight() = Font(
+  resource = Res.font.montserrat_Light,
+  weight = FontWeight.Light,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratLightItalic() = MR.fonts.montserrat_lightitalic.asFont(
-  FontWeight.Light, FontStyle.Italic
-)!!
+fun montserratLightItalic() = Font(
+  resource = Res.font.montserrat_LightItalic,
+  weight = FontWeight.Light,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratThin() = MR.fonts.montserrat_thin.asFont(
-  FontWeight.Thin
-)!!
+fun montserratThin() = Font(
+  resource = Res.font.montserrat_Thin,
+  weight = FontWeight.Thin,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratThinItalic() = MR.fonts.montserrat_thinitalic.asFont(
-  FontWeight.Thin, FontStyle.Italic
-)!!
+fun montserratThinItalic() = Font(
+  resource = Res.font.montserrat_ThinItalic,
+  weight = FontWeight.Thin,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratRegular() = MR.fonts.montserrat_regular.asFont()!!
+fun montserratRegular() = Font(
+  resource = Res.font.montserrat_Regular,
+  weight = FontWeight.Normal,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratItalic() = MR.fonts.montserrat_italic.asFont(
-  FontWeight.Normal,
-  FontStyle.Italic
-)!!
+fun montserratItalic() = Font(
+  resource = Res.font.montserrat_Italic,
+  weight = FontWeight.Normal,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratMedium() = MR.fonts.montserrat_medium.asFont(
-  FontWeight.Medium
-)!!
+fun montserratMedium() = Font(
+  resource = Res.font.montserrat_Medium,
+  weight = FontWeight.Medium,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratMediumItalic() = MR.fonts.montserrat_mediumitalic.asFont(
-  FontWeight.Medium, FontStyle.Italic
-)!!
+fun montserratMediumItalic() = Font(
+  resource = Res.font.montserrat_MediumItalic,
+  weight = FontWeight.Medium,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratSemiBold() = MR.fonts.montserrat_semibold.asFont(
-  FontWeight.SemiBold
-)!!
+fun montserratSemiBold() = Font(
+  resource = Res.font.montserrat_SemiBold,
+  weight = FontWeight.SemiBold,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratSemiBoldItalic() = MR.fonts.montserrat_semibolditalic.asFont(
-  FontWeight.SemiBold,
-  FontStyle.Italic
-)!!
+fun montserratSemiBoldItalic() = Font(
+  resource = Res.font.montserrat_SemiBoldItalic,
+  weight = FontWeight.SemiBold,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratBold() = MR.fonts.montserrat_bold.asFont(
-  FontWeight.Bold
-)!!
+fun montserratBold() = Font(
+  resource = Res.font.montserrat_Bold,
+  weight = FontWeight.Bold,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratBoldItalic() = MR.fonts.montserrat_bolditalic.asFont(
-  FontWeight.Bold,
-  FontStyle.Italic
-)!!
+fun montserratBoldItalic() = Font(
+  resource = Res.font.montserrat_BoldItalic,
+  weight = FontWeight.Bold,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratExtraBold() = MR.fonts.montserrat_extrabold.asFont(
-  FontWeight.ExtraBold
-)!!
+fun montserratExtraBold() = Font(
+  resource = Res.font.montserrat_ExtraBold,
+  weight = FontWeight.ExtraBold,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratExtraBoldItalic() = MR.fonts.montserrat_extrabolditalic.asFont(
-  FontWeight.ExtraBold,
-  FontStyle.Italic
-)!!
+fun montserratExtraBoldItalic() = Font(
+  resource = Res.font.montserrat_ExtraBoldItalic,
+  weight = FontWeight.ExtraBold,
+  style = FontStyle.Italic
+)
 
 @Composable
-fun montserratBlack() = MR.fonts.montserrat_black.asFont(
-  FontWeight.Black
-)!!
+fun montserratBlack() = Font(
+  resource = Res.font.montserrat_Black,
+  weight = FontWeight.Black,
+  style = FontStyle.Normal
+)
 
 @Composable
-fun montserratBlackItalic() = MR.fonts.montserrat_blackitalic.asFont(
-  FontWeight.Black,
-  FontStyle.Italic
-)!!
+fun montserratBlackItalic() = Font(
+  resource = Res.font.montserrat_BlackItalic,
+  weight = FontWeight.Black,
+  style = FontStyle.Italic
+)
 
 @Composable
 fun montserratFamily() = FontFamily(

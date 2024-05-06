@@ -1,5 +1,18 @@
 package com.androidmakers.ui.agenda
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.back
+import androidmakersapp.shared.ui.generated.resources.bookmarked
+import androidmakersapp.shared.ui.generated.resources.english
+import androidmakersapp.shared.ui.generated.resources.feedbackWaiting
+import androidmakersapp.shared.ui.generated.resources.french
+import androidmakersapp.shared.ui.generated.resources.ic_network_blog
+import androidmakersapp.shared.ui.generated.resources.ic_network_linkedin
+import androidmakersapp.shared.ui.generated.resources.ic_network_x
+import androidmakersapp.shared.ui.generated.resources.info
+import androidmakersapp.shared.ui.generated.resources.session_app_clinic_apply
+import androidmakersapp.shared.ui.generated.resources.share
+import androidmakersapp.shared.ui.generated.resources.speakers
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.BorderStroke
@@ -58,14 +71,13 @@ import com.androidmakers.ui.model.Lce
 import com.androidmakers.ui.model.SessionDetailState
 import com.androidmakers.ui.theme.AMColor
 import com.seiko.imageloader.rememberImagePainter
-import dev.icerock.moko.resources.compose.painterResource
-import dev.icerock.moko.resources.compose.stringResource
 import fr.androidmakers.domain.model.SocialsItem
 import fr.androidmakers.domain.model.Speaker
 import fr.androidmakers.domain.model.isAppClinic
-import fr.paug.androidmakers.ui.MR
 import io.openfeedback.m3.OpenFeedback
 import kotlinx.datetime.Clock
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
@@ -120,7 +132,7 @@ fun SessionDetailLayout(
           IconButton(onClick = onBackClick) {
             Icon(
               Icons.AutoMirrored.Rounded.ArrowBack,
-              contentDescription = stringResource(MR.strings.back)
+              contentDescription = stringResource(Res.string.back)
             )
           }
         },
@@ -134,7 +146,7 @@ fun SessionDetailLayout(
             ) {
               Icon(
                 Icons.Rounded.Share,
-                contentDescription = stringResource(MR.strings.share)
+                contentDescription = stringResource(Res.string.share)
               )
             }
           }
@@ -155,7 +167,7 @@ fun SessionDetailLayout(
           Crossfade(sessionDetailState.content.isBookmarked) { isBookmarked ->
             Image(
               imageVector = if (isBookmarked) Icons.Rounded.BookmarkRemove else Icons.Rounded.BookmarkAdd,
-              contentDescription = stringResource(MR.strings.bookmarked)
+              contentDescription = stringResource(Res.string.bookmarked)
             )
           }
         }
@@ -206,7 +218,7 @@ private fun SessionDetails(
       Icon(
         modifier = Modifier.size(16.dp),
         imageVector = Icons.Rounded.Info,
-        contentDescription = stringResource(MR.strings.info)
+        contentDescription = stringResource(Res.string.info)
       )
 
       Text(
@@ -229,7 +241,7 @@ private fun SessionDetails(
           .align(Alignment.CenterHorizontally),
       ) {
         Text(
-          text = stringResource(MR.strings.session_app_clinic_apply),
+          text = stringResource(Res.string.session_app_clinic_apply),
           style = MaterialTheme.typography.bodyLarge,
           fontWeight = FontWeight.Bold,
         )
@@ -263,7 +275,7 @@ private fun SessionDetails(
         ) {
           Text(
             modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
-            text = stringResource(MR.strings.feedbackWaiting),
+            text = stringResource(Res.string.feedbackWaiting),
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center
           )
@@ -280,8 +292,8 @@ private fun SessionDetails(
 @Composable
 private fun String.asLanguageResource(): String? {
   return when (this) {
-    "English" -> stringResource(MR.strings.english)
-    "French" -> stringResource(MR.strings.french)
+    "English" -> stringResource(Res.string.english)
+    "French" -> stringResource(Res.string.french)
     else -> null
   }
 }
@@ -363,7 +375,7 @@ private fun Speaker(
           .size(64.dp)
           .clip(CircleShape),
         painter = rememberImagePainter(speakerPhotoUrl),
-        contentDescription = stringResource(MR.strings.speakers)
+        contentDescription = stringResource(Res.string.speakers)
       )
     }
 
@@ -406,21 +418,21 @@ fun SocialButtons(
           socialName.contains("twitter") || socialName == "x" -> {
             Icon(
               modifier = Modifier.size(24.dp),
-              painter = painterResource(MR.images.ic_network_x),
+              painter = painterResource(Res.drawable.ic_network_x),
               contentDescription = socialsItem.name
             )
           }
 
           socialName.contains("blog") -> {
             Icon(
-              painter = painterResource(MR.images.ic_network_blog),
+              painter = painterResource(Res.drawable.ic_network_blog),
               contentDescription = socialsItem.name
             )
           }
 
           socialName.contains("linkedin") -> {
             Icon(
-              painter = painterResource(MR.images.ic_network_linkedin),
+              painter = painterResource(Res.drawable.ic_network_linkedin),
               contentDescription = socialsItem.name
             )
           }

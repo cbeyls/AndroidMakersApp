@@ -1,5 +1,7 @@
 package com.androidmakers.ui.agenda
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.session_app_clinic_apply
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -30,9 +32,8 @@ import androidx.compose.ui.unit.dp
 import com.androidmakers.ui.common.EmojiUtils
 import com.androidmakers.ui.model.UISession
 import com.androidmakers.ui.theme.AMColor
-import dev.icerock.moko.resources.compose.stringResource
-import fr.paug.androidmakers.ui.MR
 import kotlinx.datetime.Instant
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.time.Duration.Companion.hours
 
@@ -147,7 +148,7 @@ internal fun SessionRow(
               modifier = Modifier.padding(bottom = 8.dp)
             ) {
               Text(
-                text = stringResource(MR.strings.session_app_clinic_apply),
+                text = stringResource(Res.string.session_app_clinic_apply),
                 style = MaterialTheme.typography.labelMedium
               )
             }

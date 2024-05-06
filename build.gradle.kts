@@ -6,7 +6,6 @@ plugins {
   alias(libs.plugins.kmp) apply false
   alias(libs.plugins.crashlytics) apply false
   alias(libs.plugins.jetbrainsCompose) apply false
-  alias(libs.plugins.moko) apply false
 }
 
 tasks.register("clean", Delete::class) {

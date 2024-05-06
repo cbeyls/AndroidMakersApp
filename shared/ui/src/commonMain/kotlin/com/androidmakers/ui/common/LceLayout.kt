@@ -1,5 +1,9 @@
 package com.androidmakers.ui.common
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.empty_events
+import androidmakersapp.shared.ui.generated.resources.ohno
+import androidmakersapp.shared.ui.generated.resources.retry
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -16,12 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.androidmakers.ui.model.Lce
-import dev.icerock.moko.resources.compose.stringResource
 import dev.materii.pullrefresh.PullRefreshIndicator
 import dev.materii.pullrefresh.PullRefreshState
 import dev.materii.pullrefresh.pullRefresh
 import dev.materii.pullrefresh.rememberPullRefreshState
-import fr.paug.androidmakers.ui.MR
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun LoadingLayout() {
@@ -67,7 +70,7 @@ fun ErrorLayout(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
       Text(
-          text = stringResource(MR.strings.ohno),
+          text = stringResource(Res.string.ohno),
           textAlign = TextAlign.Center
       )
       if (onClick != null) {
@@ -76,7 +79,7 @@ fun ErrorLayout(
             onClick = onClick,
             enabled = enabled
         ) {
-          Text(text = stringResource(MR.strings.retry))
+          Text(text = stringResource(Res.string.retry))
         }
       }
     }
@@ -94,7 +97,7 @@ fun EmptyLayout(modifier: Modifier = Modifier) {
       contentAlignment = Alignment.Center
   ) {
     Text(
-        text = stringResource(MR.strings.empty_events),
+        text = stringResource(Res.string.empty_events),
         textAlign = TextAlign.Center
     )
   }

@@ -3,7 +3,7 @@
 
     <string name="app_name">Android Makers by droidcon</string>
 
-    <string name="version">Version %s (%s)</string>
+    <string name="version">Version %1$s (%2$s)</string>
 
     <string name="agenda">Agenda</string>
     <string name="venue">Venue</string>
@@ -63,9 +63,6 @@
     <string name="feedback_not_available">This talk cannot be reviewed now.\nPlease come back after attending it.</string>
     <string name="watch_youtube">Watch this talk on Youtube</string>
     <string name="ask_speaker">Ask a question to the speaker on Slido</string>
-
-    <!-- Info about the session. It is `date` at `start time` - `end time`-->
-    <string name="session_detail">%s at %s - %s</string>
 
     <string name="x_hashtag" translatable="false">#AMxDC24</string>
     <string name="x_hashtag_for_query" translatable="false">AMxDC24</string>

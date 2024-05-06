@@ -1,5 +1,8 @@
 package com.androidmakers.ui.speakers
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.speaker_search_placeholder
+import androidmakersapp.shared.ui.generated.resources.speakers
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -40,9 +43,8 @@ import androidx.compose.ui.unit.dp
 import com.androidmakers.ui.common.LoadingLayout
 import com.androidmakers.ui.model.Lce
 import com.seiko.imageloader.rememberImagePainter
-import dev.icerock.moko.resources.compose.stringResource
 import fr.androidmakers.domain.model.Speaker
-import fr.paug.androidmakers.ui.MR
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -108,7 +110,7 @@ fun SpeakerScreen(
           onActiveChange = {
             active = it
           },
-          placeholder = { Text(stringResource(MR.strings.speaker_search_placeholder)) },
+          placeholder = { Text(stringResource(Res.string.speaker_search_placeholder)) },
           leadingIcon = { Icon(Icons.Rounded.Search, contentDescription = null) }
         ) {
           LazyColumn {
@@ -161,7 +163,7 @@ fun SpeakerItem(
                   .size(64.dp)
                   .clip(CircleShape),
               painter = rememberImagePainter(url),
-              contentDescription = stringResource(MR.strings.speakers)
+              contentDescription = stringResource(Res.string.speakers)
           )
         }
       },

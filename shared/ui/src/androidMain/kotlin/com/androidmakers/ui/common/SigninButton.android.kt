@@ -1,5 +1,8 @@
 package com.androidmakers.ui.common
 
+import androidmakersapp.shared.ui.generated.resources.Res
+import androidmakersapp.shared.ui.generated.resources.signin
+import androidmakersapp.shared.ui.generated.resources.signout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -15,9 +18,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import com.seiko.imageloader.rememberImagePainter
-import dev.icerock.moko.resources.compose.stringResource
 import fr.androidmakers.domain.model.User
-import fr.paug.androidmakers.ui.MR
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 actual fun SigninButton(
@@ -34,13 +36,13 @@ actual fun SigninButton(
     if (user == null) {
       Icon(
         imageVector = Icons.Rounded.AccountCircle,
-        contentDescription = stringResource(MR.strings.signin)
+        contentDescription = stringResource(Res.string.signin)
       )
     } else {
       Image(
         modifier = Modifier.clip(CircleShape),
         painter = rememberImagePainter(user.photoUrl ?: ""),
-        contentDescription = stringResource(MR.strings.signout)
+        contentDescription = stringResource(Res.string.signout)
       )
     }
   }
@@ -52,7 +54,7 @@ actual fun SigninButton(
     if (user == null) {
       DropdownMenuItem(
         text = {
-          Text(stringResource(MR.strings.signin))
+          Text(stringResource(Res.string.signin))
         },
         onClick = {
           expandedState.value = false
@@ -62,7 +64,7 @@ actual fun SigninButton(
     } else {
       DropdownMenuItem(
         text = {
-          Text(stringResource(MR.strings.signout))
+          Text(stringResource(Res.string.signout))
         },
         onClick = {
           expandedState.value = false
