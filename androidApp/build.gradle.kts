@@ -38,7 +38,8 @@ android {
             "LICENSE-junit.txt",
             "/*.proto",
             "google/**",
-            "META-INF/*.version"
+            "META-INF/*.version",
+            "/font/**"
           )
         }
         jniLibs {
