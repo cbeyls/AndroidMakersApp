@@ -13,8 +13,4 @@ class SponsorsViewModel(
   override fun produce(): Flow<Result<List<PartnerGroup>>> {
     return getPartnersUseCase()
   }
-
-  init {
-    launch(false)
-  }
 }

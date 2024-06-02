@@ -1,6 +1,6 @@
 package com.androidmakers.ui.speakers
 
-import com.androidmakers.ui.model.Lce
+import com.androidmakers.ui.model.toLce
 import fr.androidmakers.domain.model.Speaker
 import fr.androidmakers.domain.repo.SpeakersRepository
 import kotlinx.coroutines.flow.map
@@ -10,15 +10,12 @@ class SpeakerListViewModel(
     speakersRepository: SpeakersRepository
 ) : ViewModel() {
 
-  val uiState = speakersRepository.getSpeakers().map {
-    val exception = it.exceptionOrNull()
-    if (exception != null) {
-      Lce.Error
-    } else {
-      Lce.Content(SpeakersUiState(
-          speakers = it.getOrThrow()
-      ))
-    }
+  val uiState = speakersRepository.getSpeakers().map { result ->
+    result.map {
+      SpeakersUiState(
+        speakers = it
+      )
+    }.toLce()
   }
 }
 

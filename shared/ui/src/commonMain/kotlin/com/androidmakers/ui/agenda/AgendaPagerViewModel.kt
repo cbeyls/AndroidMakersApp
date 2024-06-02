@@ -24,10 +24,6 @@ class AgendaPagerViewModel(
 
   fun getFavoriteSessions() = getFavoriteSessionsUseCase()
 
-  init {
-    launch(false)
-  }
-
   fun setSessionBookmark(uiSession: UISession, bookmark: Boolean) = viewModelScope.launch {
     setSessionBookmarkUseCase(uiSession.id, bookmark)
   }

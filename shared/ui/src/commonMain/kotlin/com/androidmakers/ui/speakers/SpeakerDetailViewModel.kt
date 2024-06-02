@@ -1,6 +1,7 @@
 package com.androidmakers.ui.speakers
 
 import com.androidmakers.ui.model.Lce
+import com.androidmakers.ui.model.toLce
 import fr.androidmakers.domain.PlatformContext
 import fr.androidmakers.domain.interactor.OpenLinkUseCase
 import fr.androidmakers.domain.model.SocialsItem
@@ -14,27 +15,24 @@ import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
 class SpeakerDetailsViewModel(
-    speakerId: String,
-    speakersRepository: SpeakersRepository,
+  speakerId: String,
+  speakersRepository: SpeakersRepository,
   private val openLinkUseCase: OpenLinkUseCase,
 ) : ViewModel() {
 
   val uiState: StateFlow<Lce<SpeakerDetailsUiState>> = speakersRepository
-      .getSpeaker(speakerId).map {
-        val exception = it.exceptionOrNull()
-        if (exception != null) {
-          Lce.Error
-        } else {
-          Lce.Content(SpeakerDetailsUiState(
-              speaker = it.getOrThrow()
-          ))
-        }
-      }
-      .stateIn(
-          scope = viewModelScope,
-          started = SharingStarted.WhileSubscribed(5000L),
-          initialValue = Lce.Loading
-      )
+    .getSpeaker(speakerId).map { result ->
+      result.map {
+        SpeakerDetailsUiState(
+          speaker = it
+        )
+      }.toLce()
+    }
+    .stateIn(
+      scope = viewModelScope,
+      started = SharingStarted.WhileSubscribed(5000L),
+      initialValue = Lce.Loading
+    )
 
   fun openSpeakerLink(platformContext: PlatformContext, socialsItem: SocialsItem) {
     socialsItem.url?.let { openLinkUseCase(platformContext, it) }
